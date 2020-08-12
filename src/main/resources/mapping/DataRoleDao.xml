@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ccx_sh.demo.mapper.DataRoleDao">
+  <resultMap id="BaseResultMap" type="com.ccx_sh.demo.domain.DataRole">
+    <id column="config_id" jdbcType="BIGINT" property="configId" />
+    <result column="config_type" jdbcType="VARCHAR" property="configType" />
+    <result column="config_code" jdbcType="VARCHAR" property="configCode" />
+    <result column="config_name" jdbcType="VARCHAR" property="configName" />
+    <result column="config_desc" jdbcType="VARCHAR" property="configDesc" />
+    <result column="order_by" jdbcType="INTEGER" property="orderBy" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="is_active" jdbcType="TINYINT" property="isActive" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    config_id, config_type, config_code, config_name, config_desc, order_by, creator, 
+    modifier, is_active, insert_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from config
+    where config_id = #{configId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from config
+    where config_id = #{configId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ccx_sh.demo.domain.DataRole">
+    insert into config (config_id, config_type, config_code, 
+      config_name, config_desc, order_by, 
+      creator, modifier, is_active, 
+      insert_time, update_time)
+    values (#{configId,jdbcType=BIGINT}, #{configType,jdbcType=VARCHAR}, #{configCode,jdbcType=VARCHAR}, 
+      #{configName,jdbcType=VARCHAR}, #{configDesc,jdbcType=VARCHAR}, #{orderBy,jdbcType=INTEGER}, 
+      #{creator,jdbcType=VARCHAR}, #{modifier,jdbcType=VARCHAR}, #{isActive,jdbcType=TINYINT}, 
+      #{insertTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ccx_sh.demo.domain.DataRole">
+    insert into config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="configId != null">
+        config_id,
+      </if>
+      <if test="configType != null">
+        config_type,
+      </if>
+      <if test="configCode != null">
+        config_code,
+      </if>
+      <if test="configName != null">
+        config_name,
+      </if>
+      <if test="configDesc != null">
+        config_desc,
+      </if>
+      <if test="orderBy != null">
+        order_by,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="isActive != null">
+        is_active,
+      </if>
+      <if test="insertTime != null">
+        insert_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="configId != null">
+        #{configId,jdbcType=BIGINT},
+      </if>
+      <if test="configType != null">
+        #{configType,jdbcType=VARCHAR},
+      </if>
+      <if test="configCode != null">
+        #{configCode,jdbcType=VARCHAR},
+      </if>
+      <if test="configName != null">
+        #{configName,jdbcType=VARCHAR},
+      </if>
+      <if test="configDesc != null">
+        #{configDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="orderBy != null">
+        #{orderBy,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="isActive != null">
+        #{isActive,jdbcType=TINYINT},
+      </if>
+      <if test="insertTime != null">
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ccx_sh.demo.domain.DataRole">
+    update config
+    <set>
+      <if test="configType != null">
+        config_type = #{configType,jdbcType=VARCHAR},
+      </if>
+      <if test="configCode != null">
+        config_code = #{configCode,jdbcType=VARCHAR},
+      </if>
+      <if test="configName != null">
+        config_name = #{configName,jdbcType=VARCHAR},
+      </if>
+      <if test="configDesc != null">
+        config_desc = #{configDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="orderBy != null">
+        order_by = #{orderBy,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="isActive != null">
+        is_active = #{isActive,jdbcType=TINYINT},
+      </if>
+      <if test="insertTime != null">
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where config_id = #{configId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ccx_sh.demo.domain.DataRole">
+    update config
+    set config_type = #{configType,jdbcType=VARCHAR},
+      config_code = #{configCode,jdbcType=VARCHAR},
+      config_name = #{configName,jdbcType=VARCHAR},
+      config_desc = #{configDesc,jdbcType=VARCHAR},
+      order_by = #{orderBy,jdbcType=INTEGER},
+      creator = #{creator,jdbcType=VARCHAR},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      is_active = #{isActive,jdbcType=TINYINT},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where config_id = #{configId,jdbcType=BIGINT}
+  </update>
+</mapper>

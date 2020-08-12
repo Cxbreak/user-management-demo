@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ccx_sh.demo.mapper.CompanyEntityMapper" >
+  <resultMap id="BaseResultMap" type="com.ccx_sh.demo.domain.CompanyEntity" >
+    <id column="company_id" property="companyId" jdbcType="BIGINT" />
+    <result column="company_code" property="companyCode" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="company_desc" property="companyDesc" jdbcType="VARCHAR" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="modifier" property="modifier" jdbcType="VARCHAR" />
+    <result column="is_active" property="isActive" jdbcType="TINYINT" />
+    <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="id" property="id" jdbcType="VARCHAR" />
+    <result column="data_type" property="dataType" jdbcType="VARCHAR" />
+    <result column="data_id" property="dataId" jdbcType="VARCHAR" />
+    <result column="parent_sn" property="parentSn" jdbcType="VARCHAR" />
+    <result column="data_version" property="dataVersion" jdbcType="VARCHAR" />
+    <result column="updated_date" property="updatedDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    company_id, company_code, company_name, company_desc, creator, modifier, is_active, 
+    insert_time, update_time, id, data_type, data_id, parent_sn, data_version, updated_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from company
+    where company_id = #{companyId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from company
+    where company_id = #{companyId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ccx_sh.demo.domain.CompanyEntity" >
+    insert into company (company_id, company_code, company_name, 
+      company_desc, creator, modifier, 
+      is_active, insert_time, update_time, 
+      id, data_type, data_id, 
+      parent_sn, data_version, updated_date
+      )
+    values (#{companyId,jdbcType=BIGINT}, #{companyCode,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, 
+      #{companyDesc,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{modifier,jdbcType=VARCHAR}, 
+      #{isActive,jdbcType=TINYINT}, #{insertTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{id,jdbcType=VARCHAR}, #{dataType,jdbcType=VARCHAR}, #{dataId,jdbcType=VARCHAR}, 
+      #{parentSn,jdbcType=VARCHAR}, #{dataVersion,jdbcType=VARCHAR}, #{updatedDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ccx_sh.demo.domain.CompanyEntity" >
+    insert into company
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="companyCode != null" >
+        company_code,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="companyDesc != null" >
+        company_desc,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="modifier != null" >
+        modifier,
+      </if>
+      <if test="isActive != null" >
+        is_active,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dataType != null" >
+        data_type,
+      </if>
+      <if test="dataId != null" >
+        data_id,
+      </if>
+      <if test="parentSn != null" >
+        parent_sn,
+      </if>
+      <if test="dataVersion != null" >
+        data_version,
+      </if>
+      <if test="updatedDate != null" >
+        updated_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="companyId != null" >
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="companyCode != null" >
+        #{companyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyDesc != null" >
+        #{companyDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null" >
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="isActive != null" >
+        #{isActive,jdbcType=TINYINT},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="dataType != null" >
+        #{dataType,jdbcType=VARCHAR},
+      </if>
+      <if test="dataId != null" >
+        #{dataId,jdbcType=VARCHAR},
+      </if>
+      <if test="parentSn != null" >
+        #{parentSn,jdbcType=VARCHAR},
+      </if>
+      <if test="dataVersion != null" >
+        #{dataVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedDate != null" >
+        #{updatedDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ccx_sh.demo.domain.CompanyEntity" >
+    update company
+    <set >
+      <if test="companyCode != null" >
+        company_code = #{companyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyDesc != null" >
+        company_desc = #{companyDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null" >
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="isActive != null" >
+        is_active = #{isActive,jdbcType=TINYINT},
+      </if>
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="id != null" >
+        id = #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="dataType != null" >
+        data_type = #{dataType,jdbcType=VARCHAR},
+      </if>
+      <if test="dataId != null" >
+        data_id = #{dataId,jdbcType=VARCHAR},
+      </if>
+      <if test="parentSn != null" >
+        parent_sn = #{parentSn,jdbcType=VARCHAR},
+      </if>
+      <if test="dataVersion != null" >
+        data_version = #{dataVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedDate != null" >
+        updated_date = #{updatedDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ccx_sh.demo.domain.CompanyEntity" >
+    update company
+    set company_code = #{companyCode,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      company_desc = #{companyDesc,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      is_active = #{isActive,jdbcType=TINYINT},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      id = #{id,jdbcType=VARCHAR},
+      data_type = #{dataType,jdbcType=VARCHAR},
+      data_id = #{dataId,jdbcType=VARCHAR},
+      parent_sn = #{parentSn,jdbcType=VARCHAR},
+      data_version = #{dataVersion,jdbcType=VARCHAR},
+      updated_date = #{updatedDate,jdbcType=TIMESTAMP}
+    where company_id = #{companyId,jdbcType=BIGINT}
+  </update>
+</mapper>
